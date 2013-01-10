@@ -11,9 +11,9 @@ def controller(url, concurrency, requests_number):
                       requests_number=requests_number)
     
 def create_worker(url, concurrency, requests_number):
-    worker = 0
+    worker = 1
     workers = []
-    while worker < concurrency:
+    while worker <= concurrency:
         workers.append(subprocess.Popen('python worker.py %s %s %s' %
                                         (worker, url, requests_number), shell=True))
         worker += 1
