@@ -8,6 +8,10 @@ class Worker(object):
         self.make_request(worker, url, requests_number)
 
     def make_request(self, worker, url, requests_number):
+        """
+        It's the worker's job, make requests. It makes the
+        requests sequentially.
+        """
         for i in range(1, int(requests_number) + 1):
             print ('[Worker %s - %s time] Making the request to %s'
                    % (worker, i, url))
