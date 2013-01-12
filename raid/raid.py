@@ -1,8 +1,12 @@
+#! python
+
 import subprocess
 import urlparse
 import sys
+import os
 
 from optparse import OptionParser
+import utils
 
 
 class Raid(object):
@@ -52,9 +56,9 @@ class Raid(object):
         worker = 1
         workers = []
         while worker <= concurrency:
-            workers.append(subprocess.Popen('python worker.py %s %s %s' %
-                           (worker, url, requests_number),
-                           shell=True))
+            workers.append(subprocess.Popen('python %s %s %s %s' %
+                           (utils.get_file('worker.py'), worker, url, requests_number),
+                            shell=True))
             worker += 1
 
         while True:
@@ -82,7 +86,17 @@ if __name__ == '__main__':
     parser.add_option("-r", "--requests", action="store", type="int",
                       default=1, help="Number of requests per worker",
                       dest="requests_number")
+    parser.add_option("-t", "--tests", action="store", type="string",
+                      default=1, help="Trigger Test Suite",
+                      dest="test_mode")
+
     (options, args) = parser.parse_args()
+    if len(sys.argv) > 1:
+        if sys.argv[1] == 'tests':
+            print "Running tests..."
+            os.system('python %s' %
+                     (utils.get_file('run_tests.py')))
+            sys.exit()
 
     raid = Raid()
     raid(options.url, options.workers, options.requests_number)

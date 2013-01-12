@@ -1,0 +1,5 @@
+include README.txt
+include raid/raid.py
+include raid/run_tests.py
+include raid/utils.py
+include raid/worker.py
