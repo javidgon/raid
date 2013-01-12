@@ -10,7 +10,7 @@ setup(
       packages=['raid'],
       zip_safe=False,
       license='BSD',
-      long_description=open('README.txt').read(),
+      long_description=open('README.md').read(),
       install_requires=["requests","unittest2"],
       scripts=['raid/raid.py', 'raid/utils.py'],
 )
