@@ -1,4 +1,3 @@
-#! python
 
 import requests
 import sys

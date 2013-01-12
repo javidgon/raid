@@ -1,15 +1,16 @@
-from setuptools import setup
+from distutils.core import setup
+
 setup(
       name='Raid',
       version='0.1',
       description="Simple HTTP's requests generator",
       author='Jose Vidal',
-      author_email='javidgon[at]gmail.com',
+      author_email='javidgon@gmail.com',
       url='https://github.com/javidgon/raid',
       packages=['raid'],
+      zip_safe=False,
       license='BSD',
-      long_description=open('README.md').read(),
+      long_description=open('README.txt').read(),
       install_requires=["requests","unittest2"],
-      scripts=['raid/raid.py', 'raid/worker.py', 'raid/utils.py',
-               'raid/run_tests.py'],
+      scripts=['raid/raid.py', 'raid/utils.py'],
 )

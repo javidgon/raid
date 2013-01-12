@@ -6,7 +6,7 @@ import sys
 import os
 
 from optparse import OptionParser
-from raid.utils import get_file
+import utils
 
 
 class Raid(object):
@@ -57,7 +57,7 @@ class Raid(object):
         workers = []
         while worker <= concurrency:
             workers.append(subprocess.Popen('python %s %s %s %s' %
-                           (get_file('worker.py'), worker, url, requests_number),
+                           (utils.get_file('worker.py'), worker, url, requests_number),
                             shell=True))
             worker += 1
 
@@ -95,7 +95,7 @@ if __name__ == '__main__':
         if sys.argv[1] == 'tests':
             print "Running tests..."
             os.system('python %s' %
-                     (get_file('run_tests.py')))
+                     (utils.get_file('run_tests.py')))
             sys.exit()
 
     raid = Raid()
